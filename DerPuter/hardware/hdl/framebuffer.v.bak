@@ -1,0 +1,15 @@
+module framebuffer (
+  addr,
+  data
+);
+input [18:0] addr;
+output [7:0] data;
+reg [7:0] ram_buf [524287:0];
+
+initial begin
+  $readmemh("../hdl/init.rom",ram_buf);
+end
+
+assign data = ram_buf[addr];
+
+endmodule
